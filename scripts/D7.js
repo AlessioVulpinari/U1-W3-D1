@@ -274,11 +274,17 @@ const yearSum = function (array = []) {
   }, 0)
 }
 
-yearSum(movies)
+console.log(yearSum(movies))
 
 /* ESERCIZIO 14 (find)
   Scrivi una funzione per ottenere dall'array fornito uno specifico film (la funzione riceve un imdbID come parametro).
 */
+
+const find = function (array, imdbID) {
+  return array.find((obj) => obj.imdbID === imdbID)
+}
+
+console.log(find(movies, "tt4154756"))
 
 /* ESERCIZIO 15 (findIndex)
   Scrivi una funzione per ottenere dall'array fornito l'indice del primo film uscito nell'anno fornito come parametro.
