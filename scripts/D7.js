@@ -105,7 +105,9 @@ console.log(lenghtOfString(arrayOfString))
 oneToNintyNine = []
 
 for (let i = 0; i < 99; i++) {
-  oneToNintyNine.push(i + 1)
+  if (i % 2 != 0) {
+    oneToNintyNine.push(i + 1)
+  }
 }
 
 console.log(oneToNintyNine)
@@ -230,7 +232,19 @@ const movies = [
   Scrivi una funzione per trovare il film più vecchio nell'array fornito.
 */
 
-const year = function (array) {}
+const oldestMovie = (array) => {
+  let result = { Year: 2100 }
+  array.forEach((movie) => {
+    let currentYear = parseInt(movie.Year)
+    if (currentYear < result.Year) {
+      result = movie
+    }
+  })
+
+  return result
+}
+
+console.log(oldestMovie(movies))
 
 /* ESERCIZIO 10
   Scrivi una funzione per ottenere il numero di film contenuti nell'array fornito.
@@ -266,21 +280,17 @@ console.log(millenial(movies))
   Scrivi una funzione per calcolare la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array fornito.
 */
 
-const yearSum = function (array = []) {
-  array.reduce((accumulator, currentValue) => {
-    accumulator += parseInt(currentValue.Year)
-    console.log(accumulator)
-    return accumulator
-  }, 0)
+const sumAllTheYears = (array) => {
+  return array.reduce((acc, curr) => acc + parseInt(curr.Year), 0)
 }
 
-console.log(yearSum(movies))
+console.log(sumAllTheYears(movies))
 
 /* ESERCIZIO 14 (find)
   Scrivi una funzione per ottenere dall'array fornito uno specifico film (la funzione riceve un imdbID come parametro).
 */
 
-const find = function (array, imdbID) {
+const find = function (array = [], imdbID = "") {
   return array.find((obj) => obj.imdbID === imdbID)
 }
 
@@ -289,3 +299,9 @@ console.log(find(movies, "tt4154756"))
 /* ESERCIZIO 15 (findIndex)
   Scrivi una funzione per ottenere dall'array fornito l'indice del primo film uscito nell'anno fornito come parametro.
 */
+
+const findInd = function (array = [], year = "") {
+  return array.findIndex((obj) => parseInt(obj.year) === year)
+}
+
+console.log(findInd(movies, 2015))
